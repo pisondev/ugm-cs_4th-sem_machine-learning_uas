@@ -90,6 +90,19 @@ F&(3,2)&-1
 \]
 
 \textbf{Data uji 1:} $T_1=(2,1)$.
+
+Hitung jarak $T_1$ ke semua data latih:
+\[
+\begin{aligned}
+d(T_1,A)&=\sqrt{(2-2)^2+(1-2)^2}=1,\\
+d(T_1,B)&=\sqrt{(2-1)^2+(1-2)^2}=\sqrt2,\\
+d(T_1,C)&=\sqrt{(2-2)^2+(1-3)^2}=2,\\
+d(T_1,D)&=\sqrt{(2-3)^2+(1-3)^2}=\sqrt5,\\
+d(T_1,E)&=\sqrt{(2-1)^2+(1-0)^2}=\sqrt2,\\
+d(T_1,F)&=\sqrt{(2-3)^2+(1-2)^2}=\sqrt2.
+\end{aligned}
+\]
+
 \begin{center}
 \scriptsize
 \begin{tabular}{c|cccccc}
@@ -102,13 +115,26 @@ $Y$ & -1 & 1 & -1 & 1 & 1 & -1 \\
 \end{tabular}
 \end{center}
 
-Tiga tetangga terdekat dengan aturan tie-break urutan data: $A(-1),B(1),E(1)$. Mayoritas = $1$, maka
+Urutan jarak terkecil: $A(1)$, lalu seri $B,E,F(\sqrt2)$, kemudian $C(2)$ dan $D(\sqrt5)$. Dengan aturan tie-break urutan data, tiga tetangga terdekat adalah $A(-1),B(1),E(1)$. Voting: dua kelas $1$ dan satu kelas $-1$, sehingga mayoritas = $1$.
 \[
 \boxed{Y(T_1)=1}.
 \]
-\catatan{Pada $T_1$ ada jarak seri di $\sqrt2$, sehingga tanpa aturan tie-break hasil dapat ambigu. Untuk jawaban latihan, dipakai aturan urutan data.}
+\catatan{Pada $T_1$ ada jarak seri di $\sqrt2$. Jika dosen menentukan aturan tie-break lain, tetangga ketiga bisa berubah. Di sini dipakai aturan urutan data karena soal tidak memberi aturan khusus.}
 
 \textbf{Data uji 2:} $T_2=(1,1)$.
+
+Hitung jarak $T_2$ ke semua data latih:
+\[
+\begin{aligned}
+d(T_2,A)&=\sqrt{(1-2)^2+(1-2)^2}=\sqrt2,\\
+d(T_2,B)&=\sqrt{(1-1)^2+(1-2)^2}=1,\\
+d(T_2,C)&=\sqrt{(1-2)^2+(1-3)^2}=\sqrt5,\\
+d(T_2,D)&=\sqrt{(1-3)^2+(1-3)^2}=\sqrt8,\\
+d(T_2,E)&=\sqrt{(1-1)^2+(1-0)^2}=1,\\
+d(T_2,F)&=\sqrt{(1-3)^2+(1-2)^2}=\sqrt5.
+\end{aligned}
+\]
+
 \begin{center}
 \scriptsize
 \begin{tabular}{c|cccccc}
@@ -121,7 +147,7 @@ $Y$ & -1 & 1 & -1 & 1 & 1 & -1 \\
 \end{tabular}
 \end{center}
 
-Tiga tetangga terdekat: $B(1),E(1),A(-1)$. Mayoritas = $1$, maka
+Urutan jarak terkecil: $B(1)$, $E(1)$, $A(\sqrt2)$, lalu $C,F(\sqrt5)$ dan $D(\sqrt8)$. Tiga tetangga terdekat: $B(1),E(1),A(-1)$. Voting: dua kelas $1$ dan satu kelas $-1$, sehingga mayoritas = $1$.
 \[
 \boxed{Y(T_2)=1}.
 \]
@@ -205,13 +231,13 @@ Contoh: AdaBoost, Gradient Boosting.
 
 \textbf{Perbedaan inti:}
 \begin{center}
-\scriptsize
+\tiny
 \begin{tabular}{p{1.5cm}|p{1.55cm}|p{1.55cm}|p{1.55cm}}
 \toprule
 Aspek & Bagging & Boosting & Stacking \\
 \midrule
 Pola latih & Paralel & Berurutan & Dua level \\
-Data & Bootstrap & Berbobot/fokus error & Prediksi base model \\
+Data & Bootstrap & Berbobot, fokus error & Prediksi base model \\
 Gabungan & Voting/rata-rata & Voting berbobot & Meta-model \\
 Fokus & Kurangi variance & Kurangi bias & Kombinasi model \\
 \bottomrule

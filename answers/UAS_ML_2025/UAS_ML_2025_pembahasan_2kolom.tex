@@ -54,7 +54,13 @@ Banyak data uji setelah dilakukan Train-Test Split: 150
 \subsection*{1b. K-Fold Cross Validation}
 \soal Jelaskan \textit{k-fold cross validation}. Kapan digunakan?
 
-\jawab \textit{k-fold cross validation} membagi data menjadi $k$ bagian/fold. Model dilatih pada $k-1$ fold dan diuji pada 1 fold secara bergiliran, lalu skor dirata-ratakan. Dipakai ketika data terbatas, ingin evaluasi model lebih stabil, dan ingin membandingkan model/hyperparameter tanpa terlalu bergantung pada satu pembagian train-test.
+\jawab \textit{k-fold cross validation} membagi data menjadi $k$ bagian/fold berukuran kurang lebih sama. Alurnya:
+\begin{enumerate}
+\item Fold ke-1 dipakai sebagai data validasi, fold lain untuk training.
+\item Ulangi sampai setiap fold pernah menjadi data validasi satu kali.
+\item Hitung skor tiap percobaan, lalu ambil rata-ratanya.
+\end{enumerate}
+Dipakai ketika data terbatas, ingin evaluasi model lebih stabil, dan ingin membandingkan model/hyperparameter tanpa terlalu bergantung pada satu pembagian train-test.
 
 \subsection*{1c. Confusion Matrix dan Metrik}
 \soal Dari Tabel 1 berikut, buat confusion matrix lalu hitung accuracy, sensitivity/recall, precision, dan F1-measure. Kelas positif adalah \yes.
@@ -82,6 +88,14 @@ No & Target & Prediksi \\
 \end{center}
 
 \jawab
+Ambil kelas positif = \yes. Dari tabel:
+\[
+TP=\{3,5,9,12\}=4,\quad FN=\{4,8,10,11\}=4,
+\]
+\[
+FP=\{2\}=1,\quad TN=\{1,6,7\}=3.
+\]
+
 \begin{center}
 \scriptsize
 \begin{tabular}{@{}lcc@{}}
@@ -106,6 +120,7 @@ Aktual \no & FP = 1 & TN = 3 \\
 \[
 F1=\frac{2PR}{P+R}=\frac{2(0.8)(0.5)}{0.8+0.5}=61.54\%.
 \]
+Jadi model benar pada 7 dari 12 data, tetapi recall kelas \yes{} hanya 50\% karena 4 dari 8 data \yes{} diprediksi \no.
 
 \section*{2. K-Nearest Neighbor (K-NN)}
 
@@ -113,11 +128,12 @@ F1=\frac{2PR}{P+R}=\frac{2(0.8)(0.5)}{0.8+0.5}=61.54\%.
 \soal Tentukan benar/salah dan berikan alasan.
 
 \jawab \textbf{Salah.} K-NN adalah \textit{lazy learner}; saat prediksi, model menghitung jarak data baru ke banyak/semua data latih. Jika dataset besar, prediksi cenderung lambat dan butuh memori besar.
+K-NN lebih sederhana saat training karena hampir hanya menyimpan data, tetapi beban komputasi besar muncul saat prediksi.
 
 \subsection*{2b. K-NN Harus Memakai Euclidean Distance}
 \soal Tentukan benar/salah dan berikan alasan.
 
-\jawab \textbf{Salah.} Euclidean distance hanya salah satu pilihan. K-NN bisa memakai Manhattan, Minkowski, cosine similarity, Hamming distance, atau metrik lain sesuai tipe data.
+\jawab \textbf{Salah.} Euclidean distance hanya salah satu pilihan. K-NN bisa memakai Manhattan, Minkowski, cosine similarity, Hamming distance, atau metrik lain sesuai tipe data. Contoh: Hamming cocok untuk fitur biner/kategorikal sederhana, sedangkan cosine sering dipakai untuk vektor teks.
 
 \section*{3. Naive Bayes: Play Tennis}
 
@@ -178,16 +194,27 @@ S_{Yes}=\frac{9}{14}\cdot\frac{3}{9}\cdot\frac{4}{9}\cdot\frac{6}{9}\cdot\frac{6
 \[
 S_{No}=\frac{5}{14}\cdot\frac{2}{5}\cdot\frac{2}{5}\cdot\frac{1}{5}\cdot\frac{2}{5}=0.00457.
 \]
-Karena $S_{Yes}>S_{No}$, maka prediksi D15 adalah \textbf{Play Tennis = \yes}.
+Normalisasi posterior:
+\[
+\begin{aligned}
+P(Yes\mid x)&=\frac{0.04233}{0.04233+0.00457}=0.9026,\\
+P(No\mid x)&=\frac{0.00457}{0.04233+0.00457}=0.0974.
+\end{aligned}
+\]
+Karena $S_{Yes}>S_{No}$, maka prediksi D15 adalah \textbf{Play Tennis = \yes}. Soal menyebut D15 dan D16, tetapi PDF hanya memberi atribut cuaca untuk D15; karena itu yang dapat dihitung dari data soal adalah D15.
 
 \subsection*{3b. Naive Bayes untuk Data Numerik}
 \soal Naive Bayes awalnya untuk data kategorikal, tetapi bisa untuk data numerik. Jelaskan caranya.
 
-\jawab Untuk fitur numerik, gunakan \textbf{Gaussian Naive Bayes}. Untuk setiap kelas dihitung mean $\mu$ dan varians $\sigma^2$, lalu likelihood fitur dihitung dengan distribusi normal:
+\jawab Untuk fitur numerik, gunakan \textbf{Gaussian Naive Bayes}. Untuk setiap fitur dan setiap kelas, hitung mean $\mu_C$ dan varians $\sigma_C^2$ dari data latih. Likelihood nilai numerik dihitung dengan distribusi normal:
 \[
 P(x\mid C)=\frac{1}{\sqrt{2\pi\sigma_C^2}}\exp\left(-\frac{(x-\mu_C)^2}{2\sigma_C^2}\right).
 \]
-Nilai likelihood tiap fitur dikalikan dengan prior kelas, lalu pilih kelas dengan posterior terbesar.
+Untuk banyak fitur:
+\[
+Score(C)=P(C)\prod_i P(x_i\mid C).
+\]
+Nilai likelihood tiap fitur dikalikan dengan prior kelas, lalu pilih kelas dengan score/posterior terbesar. Alternatif lain untuk data numerik adalah diskretisasi/binning, tetapi Gaussian NB adalah jawaban umum.
 
 \section*{4. Ensemble Learning}
 
@@ -195,12 +222,25 @@ Nilai likelihood tiap fitur dikalikan dengan prior kelas, lalu pilih kelas denga
 \soal Jelaskan algoritma bagging, boosting, stacking, dan perbedaannya.
 
 \jawab
-\begin{itemize}
-\item \textbf{Bagging}: membuat beberapa data bootstrap, melatih beberapa model secara paralel, lalu menggabungkan hasil dengan voting/average. Fokus mengurangi variance. Contoh: Random Forest.
-\item \textbf{Boosting}: melatih model berurutan; model berikutnya fokus pada kesalahan model sebelumnya. Fokus mengurangi bias dan meningkatkan akurasi. Contoh: AdaBoost, Gradient Boosting.
-\item \textbf{Stacking}: melatih beberapa model berbeda sebagai base model, lalu outputnya dipakai sebagai input model akhir/meta-learner.
-\end{itemize}
-Perbedaan utama: bagging paralel dan berbasis bootstrap; boosting sekuensial dan berbasis perbaikan error; stacking menggabungkan model berbeda memakai meta-model.
+\textbf{Bagging}: membuat beberapa data bootstrap dari data latih, melatih beberapa model secara paralel, lalu menggabungkan hasil dengan voting/average. Tujuan utama: mengurangi variance. Contoh: Random Forest.
+
+\textbf{Boosting}: melatih model lemah secara berurutan. Model berikutnya memberi perhatian lebih pada data yang salah diprediksi model sebelumnya. Tujuan utama: mengurangi bias dan menaikkan akurasi. Contoh: AdaBoost, Gradient Boosting.
+
+\textbf{Stacking}: melatih beberapa model dasar yang bisa berbeda jenis, lalu prediksi model dasar dijadikan input untuk model akhir/meta-learner.
+
+\begin{center}
+\scriptsize
+\begin{tabular}{@{}p{1.2cm}p{1.55cm}p{1.6cm}p{1.6cm}@{}}
+\toprule
+Aspek & Bagging & Boosting & Stacking \\
+\midrule
+Pola & Paralel & Berurutan & Dua level \\
+Data & Bootstrap & Fokus error/bobot & Output base model \\
+Gabung & Voting/rata-rata & Voting berbobot & Meta-model \\
+Fokus & Variance & Bias & Kombinasi model \\
+\bottomrule
+\end{tabular}
+\end{center}
 
 \subsection*{4b. Parameter AdaBoost}
 \soal Dari Gambar 2, jelaskan arti \texttt{base\_classifier}, \texttt{n\_estimators}, dan \texttt{learning\_rate}.
@@ -212,6 +252,7 @@ Perbedaan utama: bagging paralel dan berbasis bootstrap; boosting sekuensial dan
 \item \texttt{base\_classifier}: model dasar/weak learner yang dipakai AdaBoost, misalnya decision stump.
 \item \texttt{n\_estimators=50}: jumlah weak learner yang dilatih secara berurutan.
 \item \texttt{learning\_rate=1.0}: besar kontribusi tiap weak learner; semakin kecil biasanya lebih stabil tetapi butuh lebih banyak estimator.
+\item \texttt{random\_state=42}: seed agar proses acak dapat direproduksi.
 \end{itemize}
 
 \subsection*{4c. Bagging dengan 3 Model}
@@ -227,18 +268,48 @@ $y$ & 1 & 1 & 1 & -1 & -1 & -1 & -1 \\
 \end{tabular}
 \end{center}
 
-\jawab Karena sampel bootstrap acak tidak dicantumkan pada soal, dipakai asumsi base learner berupa decision stump. Data terpisah jelas pada batas tengah antara 3.7 dan 4.4:
+\jawab Karena sampel bootstrap acak dan jenis base learner tidak dicantumkan pada soal, dipakai asumsi umum untuk latihan manual: base learner berupa \textit{decision stump} pada fitur $x$. Data terpisah jelas pada batas tengah antara 3.7 dan 4.4:
 \[
 \theta=\frac{3.7+4.4}{2}=4.05.
 \]
-Aturan tiap model yang masuk akal:
+Aturan model tunggal:
 \[
-\hat{y}=\begin{cases}
+h(x)=\begin{cases}
 1, & x<4.05,\\
 -1, & x\ge 4.05.
 \end{cases}
 \]
-Jika tiga model menghasilkan aturan yang sama, voting mayoritas memberi:
+
+Contoh tiga bootstrap yang tetap menghasilkan stump sama:
+\begin{center}
+\scriptsize
+\begin{tabular}{@{}clc@{}}
+\toprule
+Model & Indeks bootstrap & Aturan \\
+\midrule
+$h_1$ & 1,2,3,4,5,6,7 & $x<4.05\Rightarrow 1$ \\
+$h_2$ & 1,1,2,3,4,6,7 & $x<4.05\Rightarrow 1$ \\
+$h_3$ & 2,3,3,4,5,6,7 & $x<4.05\Rightarrow 1$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}
+\scriptsize
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+$x$ & 2.4 & 3.1 & 3.7 & 4.4 & 5.2 & 5.8 & 6.4 \\
+\midrule
+$y$ asli & 1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+$h_1$ & 1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+$h_2$ & 1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+$h_3$ & 1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+Voting & 1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Voting mayoritas memberi:
 \[
 \hat{y}=[1,1,1,-1,-1,-1,-1].
 \]
@@ -253,14 +324,23 @@ Catatan: jika bootstrap acak ditentukan berbeda oleh soal, prediksi model tungga
 \subsection*{5a. Clustering vs Classification}
 \soal Jelaskan perbedaan clustering dan classification.
 
-\jawab \textbf{Clustering} adalah unsupervised learning: data tidak memiliki label, lalu sistem mencari kelompok berdasarkan kemiripan. \textbf{Classification} adalah supervised learning: data latih memiliki label, lalu model memprediksi label untuk data baru.
+\jawab \textbf{Clustering} adalah unsupervised learning: data tidak memiliki label, lalu sistem mencari kelompok berdasarkan kemiripan. Contoh: membagi pelanggan menjadi beberapa segmen tanpa label awal.
+
+\textbf{Classification} adalah supervised learning: data latih memiliki label, lalu model memprediksi label untuk data baru. Contoh: memprediksi email spam/tidak spam dari data email yang sudah diberi label.
 
 \subsection*{5b. Elbow Method untuk K-Means}
 \soal Jelaskan cara menentukan nilai $k$ optimal pada k-means. Berdasarkan Gambar 3, tentukan nilai $k$ optimal.
 
 \textbf{Deskripsi Gambar 3:} grafik elbow method menampilkan Sum of Squared Distances terhadap jumlah cluster $k$. Penurunan sangat tajam terjadi dari $k=2$ ke $k=3$, kemudian kurva mulai melandai.
 
-\jawab Nilai $k$ optimal dipilih pada titik siku/elbow, yaitu saat penambahan cluster mulai memberi penurunan SSE yang jauh lebih kecil. Dari grafik, titik siku paling jelas berada di:
+\jawab Cara menentukan $k$ dengan elbow method:
+\begin{enumerate}
+\item Jalankan k-means untuk beberapa nilai $k$.
+\item Hitung SSE/Sum of Squared Distances tiap $k$.
+\item Plot $k$ terhadap SSE.
+\item Pilih titik siku, yaitu titik ketika penambahan $k$ mulai memberi penurunan SSE yang tidak terlalu besar.
+\end{enumerate}
+Dari grafik, penurunan terbesar terjadi dari $k=2$ ke $k=3$, lalu setelah itu kurva mulai lebih landai. Titik siku paling jelas berada di:
 \[
 \boxed{k=3}
 \]

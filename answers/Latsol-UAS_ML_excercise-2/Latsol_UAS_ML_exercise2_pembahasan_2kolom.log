@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.6)  9 JUN 2026 14:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.6)  9 JUN 2026 14:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -417,8 +417,7 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 nd-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count317
-)
-No file Latsol_UAS_ML_exercise2_pembahasan_2kolom.aux.
+) (Latsol_UAS_ML_exercise2_pembahasan_2kolom.aux)
 \openout1 = `Latsol_UAS_ML_exercise2_pembahasan_2kolom.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
@@ -435,6 +434,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
 LaTeX Font Info:    ... okay on input line 45.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
 LaTeX Font Info:    ... okay on input line 45.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -558,12 +558,12 @@ cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-41.
+67.
  (C:\Users\L E G I O N\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-52.
+78.
  (C:\Users\L E G I O N\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -572,19 +572,19 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
 \T1/lmr/m/n/10 (+20) yang meng-im-por mo-dul \T1/lmtt/m/n/10 naive_bayes\T1/lmr
 /m/n/10 (+20) , mem-bu-at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
+Underfull \hbox (badness 10000) in paragraph at lines 178--179
 \T1/lmr/m/n/10 (+20) mo-del \T1/lmtt/m/n/10 CategoricalNB()\T1/lmr/m/n/10 (+20)
  , me-la-tih mo-del de-ngan
  []
 
 
-Underfull \hbox (badness 3492) in paragraph at lines 152--153
+Underfull \hbox (badness 3492) in paragraph at lines 178--179
 \T1/lmtt/m/n/10 fit(X_train, y_train)\T1/lmr/m/n/10 (+20) , la-lu memp-re-dik-s
 i da-ta uji
  []
@@ -595,7 +595,7 @@ i da-ta uji
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <7> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 155.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 181.
  [1{C:/Users/L E G I O N/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/U
 sers/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}
 
@@ -605,80 +605,87 @@ hit.enc}{C:/Users/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/
 lm-mathex.enc}{C:/Users/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/enc/dvi
 ps/lm/lm-mathsy.enc}{C:/Users/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/e
 nc/dvips/lm/lm-ts1.enc}]
-Overfull \hbox (9.67792pt too wide) in paragraph at lines 214--214
-[]|\T1/lmr/m/n/7 (-20) Berbobot/fokus
+Underfull \hbox (badness 3861) in paragraph at lines 240--240
+[]|\T1/lmr/m/n/5 (+20) Berbobot, fo-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 215--215
-[]|\T1/lmr/m/n/7 (+20) Voting/rata-
+Underfull \hbox (badness 4403) in paragraph at lines 240--241
+[]|\T1/lmr/m/n/5 (+20) Prediksi ba-se
  []
 
 
-Underfull \hbox (badness 5667) in paragraph at lines 215--215
-[]|\T1/lmr/m/n/7 (+20) Voting ber-
+Underfull \hbox (badness 10000) in paragraph at lines 241--241
+[]|\T1/lmr/m/n/5 (+20) Voting/rata-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--217
-[]|\T1/lmr/m/n/7 (+20) Kombinasi
+Underfull \hbox (badness 2626) in paragraph at lines 241--241
+[]|\T1/lmr/m/n/5 (+20) Voting ber-bo-
  []
 
 
-Underfull \hbox (badness 7667) in paragraph at lines 223--224
+Underfull \hbox (badness 7186) in paragraph at lines 242--242
+[]|\T1/lmr/m/n/5 (+20) Kurangi va-ri-
+ []
+
+
+Underfull \hbox (badness 7667) in paragraph at lines 249--250
 \T1/lmr/bx/n/10 (+20) Soal. \T1/lmr/m/n/10 (+20) Per-ha-tik-an Gam-bar 2. Je-la
 sk-an ar-ti
  []
 
 
-Underfull \hbox (badness 4739) in paragraph at lines 225--226
+Underfull \hbox (badness 4739) in paragraph at lines 251--252
 []\T1/lmr/bx/n/10 (+20) Deskripsi Gam-bar 2. \T1/lmr/m/n/10 (+20) Gam-bar ber-i
 -si po-tong-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
 \T1/lmr/m/n/10 (+20) an ko-de pem-bu-at-an \T1/lmtt/m/n/10 AdaBoostClassifier \
 T1/lmr/m/n/10 (+20) de-ngan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
+Underfull \hbox (badness 10000) in paragraph at lines 251--252
 \T1/lmr/m/n/10 (+20) pa-ra-me-ter \T1/lmtt/m/n/10 base_classifier\T1/lmr/m/n/10
  (+20) , \T1/lmtt/m/n/10 n_estimators=50\T1/lmr/m/n/10 (+20) ,
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 317--318
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 343--344
 []\T1/lmr/m/n/10 (+20) AdaBoost: \T1/lmtt/m/n/10 base_classifier \T1/lmr/m/n/10
  (+20) = we-ak le-ar-ner,
  []
 
 
-Underfull \hbox (badness 4013) in paragraph at lines 317--318
+Underfull \hbox (badness 4013) in paragraph at lines 343--344
 \T1/lmtt/m/n/10 n_estimators \T1/lmr/m/n/10 (+20) = jum-lah le-ar-ner, \T1/lmtt
 /m/n/10 learning_rate
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 318--319
+Underfull \hbox (badness 10000) in paragraph at lines 344--345
 []\T1/lmr/m/n/10 (+20) Bagging ma-nu-al pa-da Ta-bel 2: pre-dik-si
  []
 
-[2] (Latsol_UAS_ML_exercise2_pembahasan_2kolom.aux)
+[3
+
+] (Latsol_UAS_ML_exercise2_pembahasan_2kolom.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 10083 strings out of 467870
- 158800 string characters out of 5415415
- 856882 words of memory out of 5000000
- 38740 multiletter control sequences out of 15000+600000
- 677529 words of font info for 120 fonts, out of 8000000 for 9000
+ 10092 strings out of 467870
+ 159117 string characters out of 5415415
+ 859550 words of memory out of 5000000
+ 38743 multiletter control sequences out of 15000+600000
+ 677730 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,11n,65p,1040b,1319s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,11n,65p,1040b,1569s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmb
 x10.pfb><C:/Users/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 lm/lmbx12.pfb><C:/Users/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/type1/p
@@ -696,10 +703,10 @@ G I O N/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/User
 s/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C
 :/Users/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt8.p
 fb>
-Output written on Latsol_UAS_ML_exercise2_pembahasan_2kolom.pdf (2 pages, 31852
-7 bytes).
+Output written on Latsol_UAS_ML_exercise2_pembahasan_2kolom.pdf (3 pages, 32935
+4 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
+ 105 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  30209 words of extra memory for PDF output out of 35830 (max. 10000000)
 

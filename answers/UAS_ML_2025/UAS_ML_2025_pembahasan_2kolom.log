@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.6)  9 JUN 2026 14:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.6)  9 JUN 2026 14:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -290,8 +290,7 @@ Package caption Info: listings package is loaded.
 nd-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count315
-)
-No file UAS_ML_2025_pembahasan_2kolom.aux.
+) (UAS_ML_2025_pembahasan_2kolom.aux)
 \openout1 = `UAS_ML_2025_pembahasan_2kolom.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
@@ -308,6 +307,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
 LaTeX Font Info:    ... okay on input line 27.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -382,51 +382,67 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <7> not available
 
 
 ]
-Underfull \hbox (badness 1769) in paragraph at lines 201--202
-[]\T1/cmr/bx/n/10 Stacking\T1/cmr/m/n/10 : melatih be-ber-apa model berbeda se-
-ba-gai
+Underfull \hbox (badness 10000) in paragraph at lines 238--238
+[]|\T1/cmr/m/n/7 Fokus er-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
+Underfull \hbox (badness 10000) in paragraph at lines 239--239
+[]|\T1/cmr/m/n/7 Voting/rata-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--239
+[]|\T1/cmr/m/n/7 Voting
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 240--241
+[]|\T1/cmr/m/n/7 Kombinasi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
 []\T1/cmr/bx/n/10 Deskripsi Gam-bar 2: \T1/cmr/m/n/10 po-ton-gan kode mem-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
 \T1/cmr/m/n/10 buat \T1/cmtt/m/n/10 AdaBoostClassifier(base_classifier,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
 \T1/cmtt/m/n/10 n_estimators=50, learning_rate=1.0,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
 \T1/cmtt/m/n/10 random_state=42) \T1/cmr/m/n/10 lalu melakukan \T1/cmtt/m/n/10 
 fit(X_train,
  []
 
-
-Underfull \hbox (badness 6625) in paragraph at lines 256--257
+[2]
+Underfull \hbox (badness 6625) in paragraph at lines 327--328
 \T1/cmr/m/n/10 tidak memi-liki la-bel, lalu sis-tem men-cari kelom-pok
  []
 
-[2] (UAS_ML_2025_pembahasan_2kolom.aux)
+[3
+
+] (UAS_ML_2025_pembahasan_2kolom.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 7197 strings out of 467870
- 109040 string characters out of 5415415
- 792380 words of memory out of 5000000
- 36022 multiletter control sequences out of 15000+600000
+ 7207 strings out of 467870
+ 109424 string characters out of 5415415
+ 788371 words of memory out of 5000000
+ 36030 multiletter control sequences out of 15000+600000
  644674 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,8n,65p,407b,1298s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,8n,65p,359b,1298s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\L E G I O N\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
 0\tcrm1000.pk> <C:\Users\L E G I O N\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
 pen/ec/dpi600\ecxc1000.pk> <C:\Users\L E G I O N\AppData\Local\MiKTeX\fonts/pk/
@@ -448,12 +464,14 @@ lic/amsfonts/cm/cmex10.pfb><C:/Users/L E G I O N/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/L E G I O N/AppData/Local/P
 rograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/L E G I O N/A
 ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users
-/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.
+/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.
 pfb><C:/Users/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb>
-Output written on UAS_ML_2025_pembahasan_2kolom.pdf (2 pages, 206179 bytes).
+onts/cm/cmr7.pfb><C:/Users/L E G I O N/AppData/Local/Programs/MiKTeX/fonts/type
+1/public/amsfonts/cm/cmsy10.pfb><C:/Users/L E G I O N/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on UAS_ML_2025_pembahasan_2kolom.pdf (3 pages, 233530 bytes).
 PDF statistics:
- 471 PDF objects out of 1000 (max. 8388607)
+ 498 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
