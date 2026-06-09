@@ -1,0 +1,321 @@
+\documentclass[a4paper,10pt,twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[indonesian]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{microtype}
+
+\geometry{top=1.35cm,bottom=1.45cm,left=1.25cm,right=1.25cm,columnsep=0.65cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlist[itemize]{leftmargin=*, itemsep=1pt, topsep=2pt}
+\setlist[enumerate]{leftmargin=*, itemsep=2pt, topsep=2pt}
+\titleformat{\section}{\large\bfseries\color{black}}{}{0pt}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{black}}{}{0pt}{}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Latihan UAS Machine Learning - Exercise 2}
+\rhead{Ringkasan Jawaban}
+\cfoot{\thepage}
+
+\lstset{
+    basicstyle=\ttfamily\scriptsize,
+    breaklines=true,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    xleftmargin=0pt,
+    xrightmargin=0pt
+}
+
+\newcommand{\soal}[1]{\textbf{Soal.} #1}
+\newcommand{\jawab}{\textbf{Jawaban singkat.} }
+\newcommand{\catatan}[1]{\textit{Catatan: #1}}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{Pembahasan Latihan Soal UAS Machine Learning}}\\[-1pt]
+    {\large \textbf{Exercise Machine Learning - 2}}\\
+    Lecturer: Afiahayati, S.Kom., M.Cs., Ph.D.\\
+    \vspace{2pt}
+    \small Format bahan belajar: soal + jawaban ringkas, 2 kolom per halaman.
+\end{center}
+
+\section{K-Nearest Neighbor (3-NN)}
+
+\soal{Lihat Tabel 1. Tentukan kelas $(Y)$ untuk data uji menggunakan metode 3-nearest neighbor dengan jarak Euclidean.}
+
+\begin{center}
+\scriptsize
+\begin{tabular}{c|cccccc|cc}
+\toprule
+ & \multicolumn{6}{c|}{Training Data} & \multicolumn{2}{c}{Testing Data} \\
+\midrule
+$X_1$ & 2 & 1 & 2 & 3 & 1 & 3 & 2 & 1 \\
+$X_2$ & 2 & 2 & 3 & 3 & 0 & 2 & 1 & 1 \\
+$Y$   & -1 & 1 & -1 & 1 & 1 & -1 & ? & ? \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\jawab
+Rumus jarak Euclidean:
+\[
+d(p,q)=\sqrt{(x_{1p}-x_{1q})^2+(x_{2p}-x_{2q})^2}.
+\]
+
+Misalkan data latih:
+\[
+\begin{array}{c|c|c}
+\text{ID} & (X_1,X_2) & Y \\
+\hline
+A&(2,2)&-1\\
+B&(1,2)&1\\
+C&(2,3)&-1\\
+D&(3,3)&1\\
+E&(1,0)&1\\
+F&(3,2)&-1
+\end{array}
+\]
+
+\textbf{Data uji 1:} $T_1=(2,1)$.
+\begin{center}
+\scriptsize
+\begin{tabular}{c|cccccc}
+\toprule
+ID & A & B & C & D & E & F \\
+\midrule
+$d(T_1,\cdot)$ & $1$ & $\sqrt2$ & $2$ & $\sqrt5$ & $\sqrt2$ & $\sqrt2$ \\
+$Y$ & -1 & 1 & -1 & 1 & 1 & -1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Tiga tetangga terdekat dengan aturan tie-break urutan data: $A(-1),B(1),E(1)$. Mayoritas = $1$, maka
+\[
+\boxed{Y(T_1)=1}.
+\]
+\catatan{Pada $T_1$ ada jarak seri di $\sqrt2$, sehingga tanpa aturan tie-break hasil dapat ambigu. Untuk jawaban latihan, dipakai aturan urutan data.}
+
+\textbf{Data uji 2:} $T_2=(1,1)$.
+\begin{center}
+\scriptsize
+\begin{tabular}{c|cccccc}
+\toprule
+ID & A & B & C & D & E & F \\
+\midrule
+$d(T_2,\cdot)$ & $\sqrt2$ & $1$ & $\sqrt5$ & $\sqrt8$ & $1$ & $\sqrt5$ \\
+$Y$ & -1 & 1 & -1 & 1 & 1 & -1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Tiga tetangga terdekat: $B(1),E(1),A(-1)$. Mayoritas = $1$, maka
+\[
+\boxed{Y(T_2)=1}.
+\]
+
+\textbf{Hasil akhir testing data:}
+\[
+\boxed{(2,1)\rightarrow 1, \qquad (1,1)\rightarrow 1}
+\]
+
+\section{Support Vector Machine}
+
+\soal{Jelaskan untuk data seperti apa Support Vector Machine cocok digunakan.}
+
+\jawab
+SVM cocok untuk:
+\begin{itemize}
+    \item Data klasifikasi numerik yang dapat dipisahkan oleh hyperplane, baik linear maupun non-linear.
+    \item Data berdimensi tinggi, misalnya teks, fitur vektor, atau citra yang sudah diekstraksi fiturnya.
+    \item Dataset kecil sampai menengah, terutama saat ingin margin pemisah yang besar.
+    \item Data non-linear jika memakai kernel, misalnya RBF atau polynomial.
+\end{itemize}
+Sebelum memakai SVM, fitur sebaiknya dinormalisasi atau distandarisasi agar skala fitur tidak mendominasi jarak/margin.
+
+\section{Naive Bayes: CategoricalNB}
+
+\soal{Perhatikan kode pada Gambar 1. Jelaskan cara kerja metode machine learning pada kode tersebut.}
+
+\textbf{Deskripsi Gambar 1.} Gambar berisi kode Python yang mengimpor modul \texttt{naive\_bayes}, membuat model \texttt{CategoricalNB()}, melatih model dengan \texttt{fit(X\_train, y\_train)}, lalu memprediksi data uji dengan \texttt{predict(X\_test)}.
+
+\begin{lstlisting}[language=Python]
+from sklearn import naive_bayes
+nb = naive_bayes.CategoricalNB()
+nb.fit(X_train, y_train)
+y_pred = nb.predict(X_test)
+\end{lstlisting}
+
+\jawab
+Kode tersebut menggunakan \textbf{Naive Bayes untuk fitur kategorikal}. Cara kerjanya:
+\begin{enumerate}
+    \item \texttt{CategoricalNB()} membuat model Naive Bayes untuk data kategori/diskrit.
+    \item \texttt{fit(X\_train, y\_train)} menghitung prior kelas $P(Y)$ dan peluang fitur kategori terhadap kelas $P(X_i \mid Y)$.
+    \item Model mengasumsikan setiap fitur saling independen bersyarat terhadap kelas.
+    \item \texttt{predict(X\_test)} memilih kelas dengan posterior terbesar:
+\end{enumerate}
+\[
+\hat{y}=\arg\max_c P(c)\prod_{i=1}^{d}P(x_i\mid c).
+\]
+Hasil akhirnya disimpan pada \texttt{y\_pred}.
+
+\section{Ensemble Learning}
+
+\subsection{Bagging, Boosting, dan Stacking}
+
+\soal{Jelaskan algoritma bagging, boosting, dan stacking serta perbedaannya.}
+
+\jawab
+\textbf{Bagging} atau bootstrap aggregating:
+\begin{itemize}
+    \item Membuat beberapa dataset baru dari data latih dengan sampling bootstrap.
+    \item Melatih beberapa model secara paralel.
+    \item Prediksi akhir diperoleh dari voting mayoritas atau rata-rata.
+    \item Tujuan utama: menurunkan variance dan mengurangi overfitting.
+\end{itemize}
+Contoh: Random Forest.
+
+\textbf{Boosting}:
+\begin{itemize}
+    \item Melatih model lemah secara berurutan.
+    \item Model berikutnya lebih fokus pada data yang salah diprediksi oleh model sebelumnya.
+    \item Prediksi akhir berupa voting berbobot.
+    \item Tujuan utama: menurunkan bias dan meningkatkan akurasi.
+\end{itemize}
+Contoh: AdaBoost, Gradient Boosting.
+
+\textbf{Stacking}:
+\begin{itemize}
+    \item Melatih beberapa model dasar yang bisa berbeda jenis.
+    \item Output model dasar dijadikan input untuk meta-model.
+    \item Meta-model belajar menggabungkan prediksi model dasar.
+\end{itemize}
+
+\textbf{Perbedaan inti:}
+\begin{center}
+\scriptsize
+\begin{tabular}{p{1.5cm}|p{1.55cm}|p{1.55cm}|p{1.55cm}}
+\toprule
+Aspek & Bagging & Boosting & Stacking \\
+\midrule
+Pola latih & Paralel & Berurutan & Dua level \\
+Data & Bootstrap & Berbobot/fokus error & Prediksi base model \\
+Gabungan & Voting/rata-rata & Voting berbobot & Meta-model \\
+Fokus & Kurangi variance & Kurangi bias & Kombinasi model \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Parameter AdaBoost}
+
+\soal{Perhatikan Gambar 2. Jelaskan arti \texttt{base\_classifier}, \texttt{n\_estimators}, dan \texttt{learning\_rate}.}
+
+\textbf{Deskripsi Gambar 2.} Gambar berisi potongan kode pembuatan \texttt{AdaBoostClassifier} dengan parameter \texttt{base\_classifier}, \texttt{n\_estimators=50}, \texttt{learning\_rate=1.0}, dan \texttt{random\_state=42}; lalu model dilatih menggunakan \texttt{fit(X\_train, y\_train)}.
+
+\begin{lstlisting}[language=Python]
+adaboost_classifier = AdaBoostClassifier(
+    base_classifier,
+    n_estimators=50,
+    learning_rate=1.0,
+    random_state=42
+)
+adaboost_classifier.fit(X_train, y_train)
+\end{lstlisting}
+
+\jawab
+\begin{itemize}
+    \item \texttt{base\_classifier}: model dasar/weak learner yang dipakai AdaBoost, misalnya decision stump.
+    \item \texttt{n\_estimators=50}: jumlah weak learner yang akan dibuat dalam proses boosting.
+    \item \texttt{learning\_rate=1.0}: mengatur besar kontribusi setiap weak learner terhadap prediksi akhir. Nilai kecil membuat pembelajaran lebih hati-hati.
+    \item \texttt{random\_state=42}: membuat hasil random dapat direproduksi.
+\end{itemize}
+
+\subsection{Implementasi Bagging Manual}
+
+\soal{Perhatikan Tabel 2. Implementasikan algoritma Bagging untuk data dengan hanya 3 bootstrapping/single model. Tulis prediksi akhir dan hitung akurasinya.}
+
+\begin{center}
+\scriptsize
+\begin{tabular}{c|cccccc}
+\toprule
+$x$ & 2.4 & 3.1 & 3.7 & 4.4 & 5.2 & 5.8 \\
+$y$ & 1 & 1 & 1 & -1 & -1 & -1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\jawab
+\catatan{Soal tidak menentukan sampel bootstrap acak dan jenis base learner. Untuk latihan manual, digunakan asumsi base learner berupa decision stump/threshold pada fitur $x$. Karena data terpisah sempurna antara $x=3.7$ dan $x=4.4$, batas yang wajar adalah $x=4.05$.}
+
+Aturan model tunggal:
+\[
+h(x)=
+\begin{cases}
+1, & x < 4.05,\\
+-1, & x \ge 4.05.
+\end{cases}
+\]
+
+Contoh 3 bootstrap dan model yang terbentuk:
+\begin{center}
+\scriptsize
+\begin{tabular}{c|p{2.3cm}|c}
+\toprule
+Model & Indeks bootstrap & Aturan \\
+\midrule
+$h_1$ & 1,2,3,4,5,5 & $x<4.05\Rightarrow 1$ \\
+$h_2$ & 1,1,2,3,4,6 & $x<4.05\Rightarrow 1$ \\
+$h_3$ & 2,3,3,4,5,6 & $x<4.05\Rightarrow 1$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Prediksi masing-masing model pada data sumber:
+\begin{center}
+\scriptsize
+\begin{tabular}{c|cccccc}
+\toprule
+$x$ & 2.4 & 3.1 & 3.7 & 4.4 & 5.2 & 5.8 \\
+\midrule
+$y$ asli & 1 & 1 & 1 & -1 & -1 & -1 \\
+$h_1$ & 1 & 1 & 1 & -1 & -1 & -1 \\
+$h_2$ & 1 & 1 & 1 & -1 & -1 & -1 \\
+$h_3$ & 1 & 1 & 1 & -1 & -1 & -1 \\
+Voting & 1 & 1 & 1 & -1 & -1 & -1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Prediksi akhir Bagging:
+\[
+\boxed{\hat{y}=[1,1,1,-1,-1,-1]}.
+\]
+
+Akurasi:
+\[
+\text{Accuracy}=\frac{\text{jumlah benar}}{\text{jumlah data}}=\frac{6}{6}=1=\boxed{100\%}.
+\]
+
+\section*{Ringkasan Jawaban Cepat}
+\begin{itemize}
+    \item 3-NN testing: $(2,1)\rightarrow 1$ dan $(1,1)\rightarrow 1$ dengan tie-break urutan data.
+    \item SVM cocok untuk data numerik, berdimensi tinggi, dan memiliki margin pemisah yang jelas; bisa non-linear dengan kernel.
+    \item \texttt{CategoricalNB}: menghitung prior dan conditional probability kategori, lalu memilih kelas dengan posterior terbesar.
+    \item Bagging: paralel + bootstrap + voting. Boosting: sequential + fokus error + voting berbobot. Stacking: base model + meta-model.
+    \item AdaBoost: \texttt{base\_classifier} = weak learner, \texttt{n\_estimators} = jumlah learner, \texttt{learning\_rate} = bobot kontribusi learner.
+    \item Bagging manual pada Tabel 2: prediksi $[1,1,1,-1,-1,-1]$, akurasi $100\%$ berdasarkan asumsi stump $x<4.05$.
+\end{itemize}
+
+\end{document}

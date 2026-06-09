@@ -1,0 +1,269 @@
+\documentclass[10pt,a4paper,twocolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array,tabularx}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+\geometry{left=0.9cm,right=0.9cm,top=1.0cm,bottom=1.0cm,columnsep=0.55cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2pt}
+\setlist{nosep,leftmargin=*}
+\captionsetup{font=scriptsize,labelfont=bf}
+\lstset{basicstyle=\ttfamily\scriptsize,breaklines=true,columns=fullflexible,frame=single,showstringspaces=false,keepspaces=true}
+\newcommand{\jawab}{\textbf{Jawab: }}
+\newcommand{\soal}{\textbf{Soal: }}
+\newcommand{\yes}{\textsc{Yes}}
+\newcommand{\no}{\textsc{No}}
+\sloppy
+
+\title{Pembahasan Ringkas Latihan Soal UAS Machine Learning}
+\author{Bahan Belajar - Format 2 Kolom}
+\date{Semester II 2024/2025}
+
+\begin{document}
+\maketitle
+
+\section*{1. Data Preparation dan Evaluation}
+
+\subsection*{1a. Train-Test Split}
+\soal Dari kode pada Gambar 1, jika total data adalah 500 dan \texttt{train\_size = 0.7}, tuliskan output program.
+
+\textbf{Deskripsi Gambar 1:} potongan kode Python memakai \texttt{train\_test\_split(X,y, train\_size=0.7)} lalu mencetak jumlah data latih dan data uji.
+
+\begin{lstlisting}[language=Python]
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.7)
+print("Banyak data latih setelah dilakukan Train-Test Split: ", len(X_train))
+print("Banyak data uji setelah dilakukan Train-Test Split: ", len(X_test))
+\end{lstlisting}
+
+\jawab
+\[
+|X_{train}|=0.7\times 500=350, \qquad |X_{test}|=500-350=150.
+\]
+Output:
+\begin{lstlisting}
+Banyak data latih setelah dilakukan Train-Test Split: 350
+Banyak data uji setelah dilakukan Train-Test Split: 150
+\end{lstlisting}
+
+\subsection*{1b. K-Fold Cross Validation}
+\soal Jelaskan \textit{k-fold cross validation}. Kapan digunakan?
+
+\jawab \textit{k-fold cross validation} membagi data menjadi $k$ bagian/fold. Model dilatih pada $k-1$ fold dan diuji pada 1 fold secara bergiliran, lalu skor dirata-ratakan. Dipakai ketika data terbatas, ingin evaluasi model lebih stabil, dan ingin membandingkan model/hyperparameter tanpa terlalu bergantung pada satu pembagian train-test.
+
+\subsection*{1c. Confusion Matrix dan Metrik}
+\soal Dari Tabel 1 berikut, buat confusion matrix lalu hitung accuracy, sensitivity/recall, precision, dan F1-measure. Kelas positif adalah \yes.
+
+\begin{center}
+\scriptsize
+\begin{tabular}{@{}ccc@{}}
+\toprule
+No & Target & Prediksi \\
+\midrule
+1 & \no & \no \\
+2 & \no & \yes \\
+3 & \yes & \yes \\
+4 & \yes & \no \\
+5 & \yes & \yes \\
+6 & \no & \no \\
+7 & \no & \no \\
+8 & \yes & \no \\
+9 & \yes & \yes \\
+10 & \yes & \no \\
+11 & \yes & \no \\
+12 & \yes & \yes \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\jawab
+\begin{center}
+\scriptsize
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & Pred. \yes & Pred. \no \\
+\midrule
+Aktual \yes & TP = 4 & FN = 4 \\
+Aktual \no & FP = 1 & TN = 3 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\[
+\text{Accuracy}=\frac{TP+TN}{12}=\frac{7}{12}=58.33\%.
+\]
+\[
+\text{Recall}=\frac{TP}{TP+FN}=\frac{4}{8}=50\%.
+\]
+\[
+\text{Precision}=\frac{TP}{TP+FP}=\frac{4}{5}=80\%.
+\]
+\[
+F1=\frac{2PR}{P+R}=\frac{2(0.8)(0.5)}{0.8+0.5}=61.54\%.
+\]
+
+\section*{2. K-Nearest Neighbor (K-NN)}
+
+\subsection*{2a. K-NN Cocok untuk Dataset Besar karena Prediksi Cepat}
+\soal Tentukan benar/salah dan berikan alasan.
+
+\jawab \textbf{Salah.} K-NN adalah \textit{lazy learner}; saat prediksi, model menghitung jarak data baru ke banyak/semua data latih. Jika dataset besar, prediksi cenderung lambat dan butuh memori besar.
+
+\subsection*{2b. K-NN Harus Memakai Euclidean Distance}
+\soal Tentukan benar/salah dan berikan alasan.
+
+\jawab \textbf{Salah.} Euclidean distance hanya salah satu pilihan. K-NN bisa memakai Manhattan, Minkowski, cosine similarity, Hamming distance, atau metrik lain sesuai tipe data.
+
+\section*{3. Naive Bayes: Play Tennis}
+
+\subsection*{3a. Probability Table dan Prediksi D15}
+\soal Diberikan data Play Tennis. Buat tabel probabilitas, lalu tentukan apakah pada D15 disarankan bermain tenis untuk kondisi: Outlook = Rain, Temperature = Mild, Humidity = Normal, Wind = Weak. Soal menyebut D15 dan D16, tetapi atribut cuaca yang tertulis hanya D15.
+
+\begin{center}
+\scriptsize
+\begin{tabular}{@{}clllll@{}}
+\toprule
+Day & Outlook & Temp. & Humid. & Wind & Play \\
+\midrule
+D1 & Sunny & Hot & High & Weak & No \\
+D2 & Sunny & Hot & High & Strong & No \\
+D3 & Overcast & Hot & High & Weak & Yes \\
+D4 & Rain & Mild & High & Weak & Yes \\
+D5 & Rain & Cool & Normal & Weak & Yes \\
+D6 & Rain & Cool & Normal & Strong & No \\
+D7 & Overcast & Cool & Normal & Strong & Yes \\
+D8 & Sunny & Mild & High & Weak & No \\
+D9 & Sunny & Cool & Normal & Weak & Yes \\
+D10 & Rain & Mild & Normal & Weak & Yes \\
+D11 & Sunny & Mild & Normal & Strong & Yes \\
+D12 & Overcast & Mild & High & Strong & Yes \\
+D13 & Overcast & Hot & Normal & Weak & Yes \\
+D14 & Rain & Mild & High & Strong & No \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\jawab Jumlah kelas: Play = \yes{} ada 9, Play = \no{} ada 5.
+
+\begin{center}
+\scriptsize
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Probabilitas & Play=\yes & Play=\no \\
+\midrule
+$P(C)$ & $9/14$ & $5/14$ \\
+Outlook=Sunny & $2/9$ & $3/5$ \\
+Outlook=Overcast & $4/9$ & $0/5$ \\
+Outlook=Rain & $3/9$ & $2/5$ \\
+Temp=Hot & $2/9$ & $2/5$ \\
+Temp=Mild & $4/9$ & $2/5$ \\
+Temp=Cool & $3/9$ & $1/5$ \\
+Humidity=High & $3/9$ & $4/5$ \\
+Humidity=Normal & $6/9$ & $1/5$ \\
+Wind=Weak & $6/9$ & $2/5$ \\
+Wind=Strong & $3/9$ & $3/5$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Untuk D15 = Rain, Mild, Normal, Weak:
+\[
+S_{Yes}=\frac{9}{14}\cdot\frac{3}{9}\cdot\frac{4}{9}\cdot\frac{6}{9}\cdot\frac{6}{9}=0.04233.
+\]
+\[
+S_{No}=\frac{5}{14}\cdot\frac{2}{5}\cdot\frac{2}{5}\cdot\frac{1}{5}\cdot\frac{2}{5}=0.00457.
+\]
+Karena $S_{Yes}>S_{No}$, maka prediksi D15 adalah \textbf{Play Tennis = \yes}.
+
+\subsection*{3b. Naive Bayes untuk Data Numerik}
+\soal Naive Bayes awalnya untuk data kategorikal, tetapi bisa untuk data numerik. Jelaskan caranya.
+
+\jawab Untuk fitur numerik, gunakan \textbf{Gaussian Naive Bayes}. Untuk setiap kelas dihitung mean $\mu$ dan varians $\sigma^2$, lalu likelihood fitur dihitung dengan distribusi normal:
+\[
+P(x\mid C)=\frac{1}{\sqrt{2\pi\sigma_C^2}}\exp\left(-\frac{(x-\mu_C)^2}{2\sigma_C^2}\right).
+\]
+Nilai likelihood tiap fitur dikalikan dengan prior kelas, lalu pilih kelas dengan posterior terbesar.
+
+\section*{4. Ensemble Learning}
+
+\subsection*{4a. Bagging, Boosting, dan Stacking}
+\soal Jelaskan algoritma bagging, boosting, stacking, dan perbedaannya.
+
+\jawab
+\begin{itemize}
+\item \textbf{Bagging}: membuat beberapa data bootstrap, melatih beberapa model secara paralel, lalu menggabungkan hasil dengan voting/average. Fokus mengurangi variance. Contoh: Random Forest.
+\item \textbf{Boosting}: melatih model berurutan; model berikutnya fokus pada kesalahan model sebelumnya. Fokus mengurangi bias dan meningkatkan akurasi. Contoh: AdaBoost, Gradient Boosting.
+\item \textbf{Stacking}: melatih beberapa model berbeda sebagai base model, lalu outputnya dipakai sebagai input model akhir/meta-learner.
+\end{itemize}
+Perbedaan utama: bagging paralel dan berbasis bootstrap; boosting sekuensial dan berbasis perbaikan error; stacking menggabungkan model berbeda memakai meta-model.
+
+\subsection*{4b. Parameter AdaBoost}
+\soal Dari Gambar 2, jelaskan arti \texttt{base\_classifier}, \texttt{n\_estimators}, dan \texttt{learning\_rate}.
+
+\textbf{Deskripsi Gambar 2:} potongan kode membuat \texttt{AdaBoostClassifier(base\_classifier, n\_estimators=50, learning\_rate=1.0, random\_state=42)} lalu melakukan \texttt{fit(X\_train, y\_train)}.
+
+\jawab
+\begin{itemize}
+\item \texttt{base\_classifier}: model dasar/weak learner yang dipakai AdaBoost, misalnya decision stump.
+\item \texttt{n\_estimators=50}: jumlah weak learner yang dilatih secara berurutan.
+\item \texttt{learning\_rate=1.0}: besar kontribusi tiap weak learner; semakin kecil biasanya lebih stabil tetapi butuh lebih banyak estimator.
+\end{itemize}
+
+\subsection*{4c. Bagging dengan 3 Model}
+\soal Implementasikan bagging pada data berikut dengan 3 bootstrap/single model. Tulis prediksi akhir dan akurasi.
+
+\begin{center}
+\scriptsize
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+$x$ & 2.4 & 3.1 & 3.7 & 4.4 & 5.2 & 5.8 & 6.4 \\
+$y$ & 1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\jawab Karena sampel bootstrap acak tidak dicantumkan pada soal, dipakai asumsi base learner berupa decision stump. Data terpisah jelas pada batas tengah antara 3.7 dan 4.4:
+\[
+\theta=\frac{3.7+4.4}{2}=4.05.
+\]
+Aturan tiap model yang masuk akal:
+\[
+\hat{y}=\begin{cases}
+1, & x<4.05,\\
+-1, & x\ge 4.05.
+\end{cases}
+\]
+Jika tiga model menghasilkan aturan yang sama, voting mayoritas memberi:
+\[
+\hat{y}=[1,1,1,-1,-1,-1,-1].
+\]
+Semua prediksi sama dengan label asli, sehingga:
+\[
+\text{Accuracy}=\frac{7}{7}\times 100\%=100\%.
+\]
+Catatan: jika bootstrap acak ditentukan berbeda oleh soal, prediksi model tunggal dapat berubah, tetapi prediksi akhir bagging tetap diambil dari voting mayoritas 3 model.
+
+\section*{5. Clustering}
+
+\subsection*{5a. Clustering vs Classification}
+\soal Jelaskan perbedaan clustering dan classification.
+
+\jawab \textbf{Clustering} adalah unsupervised learning: data tidak memiliki label, lalu sistem mencari kelompok berdasarkan kemiripan. \textbf{Classification} adalah supervised learning: data latih memiliki label, lalu model memprediksi label untuk data baru.
+
+\subsection*{5b. Elbow Method untuk K-Means}
+\soal Jelaskan cara menentukan nilai $k$ optimal pada k-means. Berdasarkan Gambar 3, tentukan nilai $k$ optimal.
+
+\textbf{Deskripsi Gambar 3:} grafik elbow method menampilkan Sum of Squared Distances terhadap jumlah cluster $k$. Penurunan sangat tajam terjadi dari $k=2$ ke $k=3$, kemudian kurva mulai melandai.
+
+\jawab Nilai $k$ optimal dipilih pada titik siku/elbow, yaitu saat penambahan cluster mulai memberi penurunan SSE yang jauh lebih kecil. Dari grafik, titik siku paling jelas berada di:
+\[
+\boxed{k=3}
+\]
+Jadi jumlah cluster optimal adalah sekitar \textbf{3 cluster}.
+
+\end{document}
