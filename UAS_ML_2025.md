@@ -132,11 +132,7 @@ PLO3; CO-7: Student a r e a b l e t o understand clustering and apply it to solv
 
    b. Please explain how to determine the optimal value of k in k-means clustering. Please loot at Figure 3. Based on the figure 3, please determine the optimal value of k! (score : 3%)
 
-Elbow Method For Optimal k
-
-Sum_of_squared_distances
-
-Number of Clusters (k)
+![Figure 3. Elbow method for optimal k](assets/elbow_method_optimal_k.svg)
 
 Figure 3. Elbow method for optimal k
 

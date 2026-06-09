@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="560" viewBox="0 0 760 560">
+<rect width="100%" height="100%" fill="#ffffff" />
+<text x="380.0" y="42.0" font-size="28" font-weight="700" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">Elbow Method For Optimal k</text>
+<line x1="110.0" y1="410.2" x2="712.0" y2="410.2" stroke="#d3d3d3" stroke-width="1.2" />
+<text x="92.0" y="418.2" font-size="20" font-weight="700" text-anchor="end" font-family="Arial, Helvetica, sans-serif">1000</text>
+<line x1="110.0" y1="327.8" x2="712.0" y2="327.8" stroke="#d3d3d3" stroke-width="1.2" />
+<text x="92.0" y="335.8" font-size="20" font-weight="700" text-anchor="end" font-family="Arial, Helvetica, sans-serif">1500</text>
+<line x1="110.0" y1="245.2" x2="712.0" y2="245.2" stroke="#d3d3d3" stroke-width="1.2" />
+<text x="92.0" y="253.2" font-size="20" font-weight="700" text-anchor="end" font-family="Arial, Helvetica, sans-serif">2000</text>
+<line x1="110.0" y1="162.8" x2="712.0" y2="162.8" stroke="#d3d3d3" stroke-width="1.2" />
+<text x="92.0" y="170.8" font-size="20" font-weight="700" text-anchor="end" font-family="Arial, Helvetica, sans-serif">2500</text>
+<line x1="110.0" y1="80.2" x2="712.0" y2="80.2" stroke="#d3d3d3" stroke-width="1.2" />
+<text x="92.0" y="88.2" font-size="20" font-weight="700" text-anchor="end" font-family="Arial, Helvetica, sans-serif">3000</text>
+<line x1="110.0" y1="72.0" x2="110.0" y2="468.0" stroke="#d3d3d3" stroke-width="1.2" />
+<text x="110.0" y="502.0" font-size="20" font-weight="700" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">2</text>
+<line x1="282.0" y1="72.0" x2="282.0" y2="468.0" stroke="#d3d3d3" stroke-width="1.2" />
+<text x="282.0" y="502.0" font-size="20" font-weight="700" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">4</text>
+<line x1="454.0" y1="72.0" x2="454.0" y2="468.0" stroke="#d3d3d3" stroke-width="1.2" />
+<text x="454.0" y="502.0" font-size="20" font-weight="700" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">6</text>
+<line x1="626.0" y1="72.0" x2="626.0" y2="468.0" stroke="#d3d3d3" stroke-width="1.2" />
+<text x="626.0" y="502.0" font-size="20" font-weight="700" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">8</text>
+<line x1="110.0" y1="72.0" x2="110.0" y2="468.0" stroke="#303030" stroke-width="2" />
+<line x1="110.0" y1="468.0" x2="712.0" y2="468.0" stroke="#303030" stroke-width="2" />
+<path d="M 110.0 80.2 L 196.0 294.8 L 282.0 334.3 L 368.0 373.9 L 454.0 403.7 L 540.0 423.4 L 626.0 439.9 L 712.0 456.4" fill="none" stroke="#555555" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+<circle cx="110.0" cy="80.2" r="7" fill="#222222" />
+<circle cx="196.0" cy="294.8" r="7" fill="#222222" />
+<circle cx="282.0" cy="334.3" r="7" fill="#222222" />
+<circle cx="368.0" cy="373.9" r="7" fill="#222222" />
+<circle cx="454.0" cy="403.7" r="7" fill="#222222" />
+<circle cx="540.0" cy="423.4" r="7" fill="#222222" />
+<circle cx="626.0" cy="439.9" r="7" fill="#222222" />
+<circle cx="712.0" cy="456.4" r="7" fill="#222222" />
+<text x="380.0" y="536.0" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">Number of Clusters (k)</text>
+<text x="28.0" y="280.0" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" transform="rotate(-90 28 280.0)">Sum_of_squared_distances</text>
+</svg>
